@@ -62,8 +62,7 @@ var questions = [
     }
 ];
 
-//Array variable for holding High Score Objects
-var highScores = JSON.parse(localStorage.highScoresArray);
+var highScores = [];
 
 // Created global variables 
 const lastQuestion = questions.length - 1;
@@ -162,35 +161,5 @@ function endQuiz(){
     start.style.display = "block";
 }
 
-//This section of JS Scripts deals with Loading HIgh Scores
-
-var showHighScores = document.getElementById("storedHighScores");
-
-init();
-
-function init(){
-
-    var storedScores = JSON.parse(localStorage.highScoresArray);
-    // console.log(JSON.parse(localStorage.highScoresArray));
-    // console.log(storedScores);
-    console.log(highScores)
-    
-    renderScores();
-}
-
-function renderScores(){
-
-
-    for( var i = 0; i < highScores.length; i++)
-    {
-        var tempHIghScore = highScores[i];
-        var li = document.createElement("li");
-        li.textContent = JSON.stringify(highScores.name + "----"+ highScores.score);
-        console.log(li)
-    }
-
-
-
-}
 
 
