@@ -162,10 +162,35 @@ function endQuiz(){
     start.style.display = "block";
 }
 
-//Todo List:
-//to pull it out use JSON.parse()
-//
-//
-//
-//
-//
+//This section of JS Scripts deals with Loading HIgh Scores
+
+var showHighScores = document.getElementById("storedHighScores");
+
+init();
+
+function init(){
+
+    var storedScores = JSON.parse(localStorage.highScoresArray);
+    // console.log(JSON.parse(localStorage.highScoresArray));
+    // console.log(storedScores);
+    console.log(highScores)
+    
+    renderScores();
+}
+
+function renderScores(){
+
+
+    for( var i = 0; i < highScores.length; i++)
+    {
+        var tempHIghScore = highScores[i];
+        var li = document.createElement("li");
+        li.textContent = JSON.stringify(highScores.name + "----"+ highScores.score);
+        console.log(li)
+    }
+
+
+
+}
+
+

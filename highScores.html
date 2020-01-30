@@ -8,6 +8,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <title>LeaderBoard</title>
 </head>
 <body>
@@ -19,9 +20,49 @@
             
         </div>
     </nav>
-    <main class="container">
-        <div id="#storedHighScores"></div>
-    </main>
+    <main class="containedScores">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"><ul id="storedHighScores"></ul></div>
+            <div class="col"></div>
     
+        </div>
+    </main>
+    <script > 
+    
+    //Array variable for holding High Score Objects
+    var highScores = JSON.parse(localStorage.highScoresArray);
+
+    var showHighScores = document.querySelector("#storedHighScores");
+
+
+        init();
+
+        function init() {
+
+            
+            // console.log(JSON.parse(localStorage.highScoresArray));
+            // console.log(storedScores);
+            console.log(highScores)
+
+            renderScores();
+        }
+
+        function renderScores() {
+
+
+            for (var i = 0; i < highScores.length; i++) {
+                var tempHIghScore = highScores[i];
+                var li = document.createElement("li");
+                li.textContent = JSON.stringify(tempHIghScore.name + "----" + tempHIghScore.score);
+                console.log(li);
+                showHighScores.append(li);
+            }
+
+
+
+        }
+    
+    </script>
 </body>
 </html>
