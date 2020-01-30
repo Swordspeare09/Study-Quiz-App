@@ -9,58 +9,61 @@ const choiceD = document.getElementById("D");
 const timer = document.getElementById("timer");
 
 // Array of Question Objects
-let questions = [
+var questions = [
     {
         question: "What is the command to display a prompt?",
         choiceA: "prompt('Text Here');",
-        choiceB: "Wrong",
-        choiceC: "Wrong",
-        choiceD: "Wrong",
+        choiceB: "var stringVar = prompt('Text Here');",
+        choiceC: "alertBox('Hello World')",
+        choiceD: "confirm('Message Text Here');",
         correct: "A"
     }, {
         question: "How do you assign the value from a prompt to a string?",
-        choiceA: "Wrong",
+        choiceA: "prompt('Text Here');",
         choiceB: "var stringVar = prompt('Text Here');",
-        choiceC: "Wrong",
-        choiceD: "Wrong",
+        choiceC: "confirm('Message Text Here');",
+        choiceD: "alertBox('Hello World')",
         correct: "B"
     }, {
         question: "How do you assign the value from a prompt to a non-string variable?",
-        choiceA: "Wrong",
-        choiceB: "Wrong",
+        choiceA: "if i=5 then",
+        choiceB: "confirm('Message Text Here');",
         choiceC: "Using a parse.Example : var intVar = parseInt(prompt('Text Here'));",
-        choiceD: "Wrong",
+        choiceD: "call myFunction()",
         correct: "C"
     }, {
         question: "How do you assign a default value to a prompt?",
-        choiceA: "Wrong",
-        choiceB: "Wrong",
+        choiceA: "call myFunction()",
+        choiceB: "alertBox('Hello World')",
         choiceC: "Correct",
         choiceD: "Using the second parameter.Example: prompt('Enter Age: ', '18');",
         correct: "D"
     }, {
         question: "How do you display a confirmation?",
         choiceA: "confirm('Message Text Here');",
-        choiceB: "Wrong",
-        choiceC: "Correct",
-        choiceD: "Wrong",
+        choiceB: "if i=5 then",
+        choiceC: "alert('Hello World')",
+        choiceD: "call myFunction()",
         correct: "A"
     }, {
         question: "What values can confirm() return?",
-        choiceA: "Wrong",
-        choiceB: "Wrong",
+        choiceA: "var answerVar = confirm('Message Text Here')",
+        choiceB: "Wronconfirm('Message Text Here');g",
         choiceC: "True or false",
-        choiceD: "Wrong",
+        choiceD: "call myFunction()",
         correct: "C"
     }, {
         question: "How do you assign the return value of confirm() to a variable?",
-        choiceA: "Wrong",
+        choiceA: "alert('Hello World')",
         choiceB: "var answerVar = confirm('Message Text Here')",
-        choiceC: "Correct",
-        choiceD: "Wrong",
+        choiceC: "function:myFunction()",
+        choiceD: "confirm('Message Text Here');",
         correct: "B"
     }
 ];
+
+//Array variable for holding High Score Objects
+var highScores = JSON.parse(localStorage.highScoresArray);
 
 // Created global variables 
 const lastQuestion = questions.length - 1;
@@ -106,6 +109,10 @@ function checkAnswer(answer) {
         runningQuestion++;
         renderQuestion();
     }
+    else
+    {
+        endQuiz();
+    }
 
 };
 
@@ -116,6 +123,7 @@ function displayTimer(){
     interval = setInterval(function () {
         seconds--;
         if(seconds <= 0){
+            clearInterval(interval);
             endQuiz();
         }
         renderTime();
@@ -128,8 +136,36 @@ function renderTime(){
     timer.textContent = seconds;
 };
 
-function endQuiz(){
-    var highScoreName = prompt("Congratulations! You scored " + score + " out of " +questions.length + "! Enter a name for the Leader Boards");
-    localStorage.setItem()
+//Simple Function for hiding the timer after a each game
+function hideTime(){
 
+    timer.textContent ="";
 }
+
+function endQuiz(){
+
+    var newHighscore = {
+        name: "",
+        score: 0
+    }
+    clearInterval(interval);
+    var highScoreName = prompt("Congratulations! You scored " + score + " out of " +questions.length + "! Enter a name for the Leader Boards");
+    newHighscore.name = highScoreName;
+    newHighscore.score = score;
+    highScores.push(newHighscore);
+    localStorage.highScoresArray = JSON.stringify(highScores);
+    runningQuestion = 0;
+    seconds = 60;
+    hideTime();
+    alert("Click the LeaderBoard button to check out the latest high scores!");
+    quiz.style.display = "none";
+    start.style.display = "block";
+}
+
+//Todo List:
+//to pull it out use JSON.parse()
+//
+//
+//
+//
+//

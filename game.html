@@ -15,20 +15,32 @@
 <body>
     <nav class = "row">
         <div class = "col">
-            <a href="highScores.html">LeaderBoard</a>
+            <a class="btn" href="/highscores.html">LeaderBoard</a>
         </div>
         <div id="timer"class="col"><!-- Timer inserted through JS --></div>
     </nav>
     <main id="container" class="flex-center flex-column">
-        <div id="start">Start Quiz!</div>
+        <div id="start" class="btn">Start Quiz!</div>
+        <!-- <section id="quiz" style="display: none">
+            <div id="question"> Questions inserted through JS </div>
+            <div id="choices">
+                 Answer Choices inserted through JS
+                <div class="choice btn" id="A" onclick="checkAnswer('A')"></div>
+                <div class="choice btn" id="B" onclick="checkAnswer('B')"></div>
+                <div class="choice btn" id="C" onclick="checkAnswer('C')"></div>
+                <div class="choice btn" id="D" onclick="checkAnswer('D')"></div>
+            </div>
+        </section> -->
         <section id="quiz" style="display: none">
-            <div id="question"><!-- Questions inserted through JS --></div>
+            <div id="question">
+                <!-- Questions inserted through JS -->
+            </div>
             <div id="choices">
                 <!-- Answer Choices inserted through JS -->
-                <div class="choice" id="A" onclick="checkAnswer('A')"></div>
-                <div class="choice" id="B" onclick="checkAnswer('B')"></div>
-                <div class="choice" id="C" onclick="checkAnswer('C')"></div>
-                <div class="choice" id="D" onclick="checkAnswer('D')"></div>
+                <div class="choice btn" id="A" onclick="checkAnswer('A')"></div>
+                <div class="choice btn" id="B" onclick="checkAnswer('B')"></div>
+                <div class="choice btn" id="C" onclick="checkAnswer('C')"></div>
+                <div class="choice btn" id="D" onclick="checkAnswer('D')"></div>
             </div>
         </section>
     </main>
